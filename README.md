@@ -21,6 +21,10 @@ Complete o exercício no tempo estimado.
 Prazo de Entrega 1: 25-fev (2,5 pt) | Prazo de Entrega 2: 01-mar (1,5 pt)
 - **Projeto 2 -**<br>
 Prazo de Entrega 1: - (2,5 pt) | Prazo de Entrega 2: - (1,5 pt)
+- **Projeto 3 -**<br>
+Prazo de Entrega 1: - (2,5 pt) | Prazo de Entrega 2: - (1,5 pt)
+- **Projeto 4 -**<br>
+Prazo de Entrega 1: - (2,5 pt) | Prazo de Entrega 2: - (1,5 pt)
 
 ### Análise e Projeto de Sistemas
 - Projeto Pessoal: aguarde mais informações...
