@@ -6,7 +6,7 @@ JavaScript pode **criar novos elementos HTML dinamicamente**.
 
 # 📌 Exemplo
 
-```jsx
+```js
 // Criando elemento
 const paragrafo = document.createElement("p");
 
