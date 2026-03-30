@@ -1,0 +1,10 @@
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+.destaque {
+  background-color: yellow;
+  padding: 10px;
+  border-radius: 5px;
+}
