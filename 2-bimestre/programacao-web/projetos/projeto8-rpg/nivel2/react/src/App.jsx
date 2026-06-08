@@ -1,40 +1,29 @@
-import { useEffect, useState } from 'react'
-import FormularioPersonagem from './components/FormularioPersonagem'
-import ListaPersonagens from './components/ListaPersonagens'
-import PainelStatus from './components/PainelStatus'
-import './App.css'
+import { useState, useEffect } from "react"
+import FormularioPersonagem from "./components/FormularioPersonagem"
+import ListaPersonagens from "./components/ListaPersonagens"
+import PainelStatus from "./components/PainelStatus"
 
 function App() {
   const [personagens, setPersonagens] = useState([])
 
-  const adicionarPersonagem = (personagem) => {
-    setPersonagens((prevPersonagens) => [...prevPersonagens, personagem])
-  }
-
   useEffect(() => {
-    if (personagens.length > 0) {
-      console.log('Lista atualizada')
-    }
+    console.log("Lista atualizada")
   }, [personagens])
 
+  const adicionarPersonagem = (novoPersonagem) => {
+    setPersonagens((prev) => [...prev, novoPersonagem])
+  }
+
   return (
-    <main className="app-container">
-      <header className="app-header">
-        <h1>Gerenciador de Personagens RPG</h1>
-      </header>
+    <div className="container">
+      <h1>GERENCIADOR DE PERSONAGENS RPG</h1>
 
-      <section className="app-form">
-        <FormularioPersonagem adicionarPersonagem={adicionarPersonagem} />
-      </section>
+      <FormularioPersonagem adicionarPersonagem={adicionarPersonagem} />
 
-      <section className="app-status">
-        <PainelStatus total={personagens.length} />
-      </section>
+      <PainelStatus total={personagens.length} />
 
-      <section className="app-list">
-        <ListaPersonagens personagens={personagens} />
-      </section>
-    </main>
+      <ListaPersonagens personagens={personagens} />
+    </div>
   )
 }
 
