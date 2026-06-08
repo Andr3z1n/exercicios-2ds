@@ -1,0 +1,41 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 24px 0 48px;
+}
+
+.app-header {
+  width: min(760px, 100%);
+  background: #f2efff;
+  border: 1px solid #d9d4ff;
+  border-radius: 22px;
+  padding: 24px 20px;
+  box-shadow: var(--shadow);
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: clamp(2rem, 3vw, 2.6rem);
+  color: #2b2666;
+}
+
+.app-form,
+.app-status,
+.app-list {
+  width: min(760px, 100%);
+}
+
+@media (max-width: 640px) {
+  .app-container {
+    padding: 20px 0 32px;
+  }
+
+  .app-header,
+  .app-form,
+  .app-status,
+  .app-list {
+    padding: 0 16px;
+  }
+}
