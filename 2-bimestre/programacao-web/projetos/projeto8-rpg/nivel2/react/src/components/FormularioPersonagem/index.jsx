@@ -1,54 +1,25 @@
-import { useState, useRef } from "react"
 import "./style.css"
 
-function FormularioPersonagem({ adicionarPersonagem }) {
-  const [nome, setNome] = useState("")
-  const [classe, setClasse] = useState("")
-
-  const nomeRef = useRef(null)
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-
-    if (!nome.trim() || !classe.trim()) return
-
-    adicionarPersonagem({
-      nome,
-      classe
-    })
-
-    setNome("")
-    setClasse("")
-
-    nomeRef.current.focus()
+function ListaPersonagens({ personagens }) {
+  if (personagens.length === 0) {
+    return (
+      <div className="lista">
+        <p>Nenhum personagem cadastrado.</p>
+      </div>
+    )
   }
 
   return (
-    <form className="formulario" onSubmit={handleSubmit}>
-      <label>Nome</label>
-
-      <input
-        ref={nomeRef}
-        type="text"
-        value={nome}
-        onChange={(e) => setNome(e.target.value)}
-        placeholder="nome do personagem"
-      />
-
-      <label>Classe</label>
-
-      <input
-        type="text"
-        value={classe}
-        onChange={(e) => setClasse(e.target.value)}
-        placeholder="classe do personagem"
-      />
-
-      <button type="submit">
-        Cadastrar Personagem
-      </button>
-    </form>
+    <div className="lista">
+      <ul>
+        {personagens.map((personagem, index) => (
+          <li key={index}>
+            {personagem.nome} - {personagem.classe}
+          </li>
+        ))}
+      </ul>
+    </div>
   )
 }
 
-export default FormularioPersonagem
+export default ListaPersonagens
