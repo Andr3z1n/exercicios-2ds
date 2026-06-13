@@ -1,0 +1,19 @@
+.lista {
+  max-width: 400px;
+  margin: 20px auto;
+
+  padding: 20px;
+  border-radius: 12px;
+
+  background: #f9fafb;
+}
+
+.lista ul {
+  list-style: none;
+  padding: 0;
+}
+
+.lista li {
+  padding: 8px 0;
+  border-bottom: 1px solid #ddd;
+}
