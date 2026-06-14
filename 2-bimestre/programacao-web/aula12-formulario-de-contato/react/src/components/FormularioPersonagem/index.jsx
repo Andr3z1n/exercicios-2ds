@@ -1,30 +1,42 @@
+import { useState } from "react";
 
-export default function FormularioContato() {
+export default function FormularioPersonagem({ adicionarPersonagem }) {
+  const [nome, setNome] = useState("");
+  const [classe, setClasse] = useState("");
+
   function enviar(event) {
-    event.preventDefault()
+    event.preventDefault();
 
-    const nome = event.target[0].value
-    const mensagem = event.target[1].value
-    alert(`Mensagem enviada por ${nome}: ${mensagem}`)
+    if (!nome || !classe) return;
+
+    adicionarPersonagem({
+      nome,
+      classe,
+    });
+
+    setNome("");
+    setClasse("");
   }
 
   return (
     <form onSubmit={enviar}>
-
       <input
         type="text"
-        placeholder="Seu nome"
+        placeholder="Nome do personagem"
+        value={nome}
+        onChange={(e) => setNome(e.target.value)}
       />
 
       <input
         type="text"
-        placeholder="Sua mensagem"
+        placeholder="Classe do personagem"
+        value={classe}
+        onChange={(e) => setClasse(e.target.value)}
       />
 
       <button type="submit">
-        Enviar
+        Cadastrar Personagem
       </button>
-
     </form>
-  )
+  );
 }

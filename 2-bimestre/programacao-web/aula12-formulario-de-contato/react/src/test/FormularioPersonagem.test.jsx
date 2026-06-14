@@ -5,32 +5,46 @@ import { describe, test, expect, vi } from "vitest";
 import FormularioPersonagem from "/src/components/FormularioPersonagem";
 
 describe("FormularioPersonagem", () => {
-  window.alert = vi.fn();
-
   test("renderiza inputs", () => {
-    render(<FormularioPersonagem />);
+    render(
+      <FormularioPersonagem adicionarPersonagem={() => {}} />
+    );
 
     expect(
-      screen.getByPlaceholderText(/seu nome/i)
+      screen.getByPlaceholderText(/nome do personagem/i)
     ).toBeTruthy();
 
     expect(
-      screen.getByPlaceholderText(/sua mensagem/i)
+      screen.getByPlaceholderText(/classe do personagem/i)
     ).toBeTruthy();
   });
 
   test("envia formulário", async () => {
-    render(<FormularioPersonagem />);
+    const adicionarPersonagem = vi.fn();
 
-    const nome = screen.getByPlaceholderText(/seu nome/i);
-    const mensagem = screen.getByPlaceholderText(/sua mensagem/i);
-    const botao = screen.getByText(/enviar/i);
+    render(
+      <FormularioPersonagem
+        adicionarPersonagem={adicionarPersonagem}
+      />
+    );
 
-    await userEvent.type(nome, "Ana");
-    await userEvent.type(mensagem, "Olá");
+    const nome = screen.getByPlaceholderText(
+      /nome do personagem/i
+    );
+
+    const classe = screen.getByPlaceholderText(
+      /classe do personagem/i
+    );
+
+    const botao = screen.getByText(
+      /cadastrar personagem/i
+    );
+
+    await userEvent.type(nome, "Goku");
+    await userEvent.type(classe, "Guerreiro");
 
     await userEvent.click(botao);
 
-    expect(window.alert).toHaveBeenCalled();
+    expect(adicionarPersonagem).toHaveBeenCalled();
   });
 });

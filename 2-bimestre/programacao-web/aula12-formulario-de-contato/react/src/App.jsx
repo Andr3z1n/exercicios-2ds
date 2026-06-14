@@ -17,7 +17,7 @@ export default function App() {
 
   return (
     <div className="container">
-      <h1>Gerenciador de Personagens Rpg</h1>
+      <h1>Gerenciador de Personagens RPG</h1>
 
       <FormularioPersonagem
         adicionarPersonagem={adicionarPersonagem}
