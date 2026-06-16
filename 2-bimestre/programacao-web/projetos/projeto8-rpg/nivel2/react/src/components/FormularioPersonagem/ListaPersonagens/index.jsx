@@ -1,16 +1,16 @@
-import { useState, useRef } from "react"
+import { useRef, useState } from "react"
 import "./style.css"
 
-function FormularioPersonagem({ adicionarPersonagem }) {
+export default function FormularioPersonagem({ adicionarPersonagem }) {
   const [nome, setNome] = useState("")
   const [classe, setClasse] = useState("")
 
-  const nomeRef = useRef(null)
+  const nomeRef = useRef()
 
-  const handleSubmit = (e) => {
+  const cadastrar = (e) => {
     e.preventDefault()
 
-    if (!nome.trim() || !classe.trim()) return
+    if (!nome || !classe) return
 
     adicionarPersonagem({
       nome,
@@ -22,26 +22,24 @@ function FormularioPersonagem({ adicionarPersonagem }) {
 
     nomeRef.current.focus()
   }
-
+export default ListaPersonagens
   return (
-    <form className="formulario" onSubmit={handleSubmit}>
+    <form className="formulario" onSubmit={cadastrar}>
       <label>Nome</label>
-
       <input
         ref={nomeRef}
         type="text"
+        placeholder="Nome do personagem"
         value={nome}
         onChange={(e) => setNome(e.target.value)}
-        placeholder="nome do personagem"
       />
 
       <label>Classe</label>
-
       <input
         type="text"
+        placeholder="Classe do personagem"
         value={classe}
         onChange={(e) => setClasse(e.target.value)}
-        placeholder="classe do personagem"
       />
 
       <button type="submit">
@@ -50,5 +48,3 @@ function FormularioPersonagem({ adicionarPersonagem }) {
     </form>
   )
 }
-
-export default FormularioPersonagem

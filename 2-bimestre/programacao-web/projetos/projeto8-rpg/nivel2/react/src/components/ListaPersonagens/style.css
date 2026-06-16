@@ -1,15 +1,19 @@
 .lista {
-  margin-top: 20px;
+  max-width: 400px;
+  margin: 20px auto;
+
   padding: 20px;
-  border-radius: 10px;
-  background: #f5f5f5;
+  border-radius: 12px;
+
+  background: #f9fafb;
 }
 
 .lista ul {
-  list-style: disc;
-  padding-left: 20px;
+  list-style: none;
+  padding: 0;
 }
 
 .lista li {
-  margin-bottom: 8px;
+  padding: 8px 0;
+  border-bottom: 1px solid #ddd;
 }

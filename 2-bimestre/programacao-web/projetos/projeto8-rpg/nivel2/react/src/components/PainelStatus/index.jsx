@@ -1,11 +1,9 @@
 import "./style.css"
 
-function PainelStatus({ total }) {
+export default function PainelStatus({ total }) {
   return (
-    <div className="painel-status">
+    <div className="painel">
       <h2>Total de Personagens: {total}</h2>
     </div>
   )
 }
-
-export default PainelStatus

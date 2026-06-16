@@ -1,10 +1,10 @@
 import "./style.css"
 
-function ListaPersonagens({ personagens }) {
+export default function ListaPersonagens({ personagens }) {
   if (personagens.length === 0) {
     return (
       <div className="lista">
-        <p>Nenhum personagem cadastrado.</p>
+        <p>Nenhum personagem cadastrado!</p>
       </div>
     )
   }
@@ -21,5 +21,3 @@ function ListaPersonagens({ personagens }) {
     </div>
   )
 }
-
-export default ListaPersonagens

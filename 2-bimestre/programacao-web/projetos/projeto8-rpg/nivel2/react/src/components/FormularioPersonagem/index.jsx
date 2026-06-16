@@ -1,6 +1,6 @@
 import "./style.css"
 
-function ListaPersonagens({ personagens }) {
+export default function FormularioPersonagem({ personagens = [], onAdd }) {
   if (personagens.length === 0) {
     return (
       <div className="lista">
