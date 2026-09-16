@@ -193,5 +193,11 @@ Um grupo sugere imediatamente:
 Antes de desenvolver qualquer coisa, responda:
 
 1. Qual seria a primeira coisa que a equipe deveria descobrir?
+-qual é o problema real de comunicação atual (por exemplo, se as mensagens não chegam, se ficam espalhadas ou se os alunos esquecem de olhar) e quem é esse usuário (como os alunos preferem se comunicar).
+
 2. Cite duas perguntas que poderiam ser feitas aos alunos.
+-"Como você fica sabendo dos avisos importantes da escola hoje em dia?"
+-"Qual é a sua maior dificuldade na hora de acompanhar os comunicados da escola?"
+
 3. Por que não é recomendado começar desenvolvendo o aplicativo imediatamente?
+Não é recomendado começar o desenvolvimento imediatamente para evitar o desperdício de tempo e recursos. Sem entender se o usuário e a equipe corre o risco de criar um aplicativo complexo que ninguém vai baixar ou que simplesmente não resolve a dor real dos alunos.
