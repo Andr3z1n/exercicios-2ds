@@ -128,6 +128,13 @@ _
 Classifique cada situação como **Produto** ou **Projeto**.
 
 1. Desenvolvimento de uma nova funcionalidade para um aplicativo.
+-esforço temporário, com início e fim definidos, para entregar um resultado específico
+
 2. Plataforma de cursos utilizada por milhares de alunos.
+-plataforma em si, que já está no mercado gerando valor continuamente
+ para os alunos e recebendo melhorias constantes.
+
 3. Construção de um sistema para uma empresa.
+-fase de "construção" é o conjunto de atividades planejadas e executadas que terminará assim que o sistema for entregue.
 4. Aplicativo de delivery utilizado diariamente pelos clientes.
+-aplicativo finalizado e disponível, utilizado no dia a dia pelos clientes e que continuará existindo enquanto houver demanda.
