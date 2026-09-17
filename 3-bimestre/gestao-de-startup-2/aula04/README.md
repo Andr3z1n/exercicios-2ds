@@ -204,5 +204,12 @@ Você acredita que três desses campos não são necessários e podem tornar o c
 Responda:
 
 1. Você simplesmente implementaria os cinco campos?
+-não implementaria pois o processo ia ser demorado
+
 2. O que deveria fazer antes?
+-Qual é o problema, quem possui esse problema, o que precisa ser
+resolvido, qual solução é viável, como podemos construir entre
+outros aspectos.
+
 3. Como poderia apresentar sua preocupação à equipe?
+-Eu apresentaria a preocupação mostrando que alguns campos podem não ser essenciais e podem tornar o cadastro mais longo. Sugeriria analisar a importância de cada informação, entender o objetivo desses dados e buscar uma solução que mantenha o cadastro simples e eficiente para os usuários.
