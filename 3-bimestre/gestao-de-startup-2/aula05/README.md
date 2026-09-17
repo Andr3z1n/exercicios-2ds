@@ -206,6 +206,16 @@ _
 Para cada situação, indique qual reunião seria mais adequada:
 
 1. A equipe precisa decidir quais tarefas serão realizadas na próxima Sprint.
+-A equipe precisa decidir quais tarefas serão realizadas na próxima Sprint. Sprint Planning: reunião para definir as tarefas e objetivos da próxima Sprint.
+
 2. Um desenvolvedor quer informar que está bloqueado por um problema.
+Um desenvolvedor quer informar que está bloqueado por um problema.
+Daily Scrum: reunião rápida para informar o andamento, dificuldades e impedimentos.
+
 3. A equipe terminou uma Sprint e precisa apresentar o que desenvolveu.
+A equipe terminou uma Sprint e precisa apresentar o que desenvolveu.
+Sprint Review: reunião para apresentar o resultado desenvolvido durante a Sprint.
+
 4. A equipe percebeu que houve problemas de comunicação durante a Sprint e quer descobrir como melhorar.
+A equipe percebeu que houve problemas de comunicação durante a Sprint e quer descobrir como melhorar.
+Sprint Retrospective: reunião para analisar problemas e definir melhorias para as próximas Sprints.
