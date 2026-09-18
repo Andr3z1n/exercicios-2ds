@@ -240,5 +240,10 @@ A equipe consegue realizar apenas **três tarefas** nesta Sprint.
 ### Perguntas
 
 1. Quais três tarefas você escolheria?
+- A, B D
+
 2. Por que elas devem ter prioridade?
+Tarefa A (Erro no login): É o único erro crítico mantido. Garante que os usuários consigam passar da tela inicial e de fato entrem no sistema.
+
 3. Qual seria um possível objetivo para essa Sprint?
+Desbloquear o acesso dos usuários à plataforma através de uma página inicial renovada e com melhor identidade visual.
