@@ -219,5 +219,11 @@ Ela possui um protótipo simples desenhado em papel.
 Crie:
 
 1. Uma tarefa que será dada ao usuário.
+-Imagine que você tem uma prova de Matemática na próxima sexta-feira. Use o protótipo para cadastrar essa tarefa e definir um lembrete para dois dias antes da prova.
+
 2. Duas coisas que a equipe deverá observar.
+-Onde o usuário tenta clicar primeiro
+-Expressões faciais e hesitações.
+
 3. Uma pergunta para fazer depois do teste.
+-Qual foi a parte mais confusa ou difícil no momento de cadastrar a sua tarefa e o seu lembrete
