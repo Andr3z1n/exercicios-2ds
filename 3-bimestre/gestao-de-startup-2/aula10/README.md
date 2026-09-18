@@ -304,6 +304,7 @@ Analise as três situações:
 
 A equipe criou uma lista simples onde o comerciante consegue registrar e visualizar pedidos.
 
+
 ### Situação B
 
 Além da lista de pedidos, a equipe melhorou a interface, facilitou o cadastro e tornou a utilização mais agradável.
@@ -317,3 +318,8 @@ Identifique cada uma:
 - MVP
 - MLP
 - MMP
+
+RESPOSTAS:⤵
+Situação A: MVP
+Situaçaõ B: MLP
+Situação C: MMP
