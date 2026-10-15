@@ -21,7 +21,24 @@ Seu trabalho é construir esse servidor de status.
 O `package.json` deste projeto deve ter, além do `test` que já existe, dois scripts personalizados:
 
 | Script | Comando |
-| --- | --- |
+| --- | --- |{
+  "name": "projeto5-kakaio7",
+  "version": "1.0.0",
+  "description": "Servidor de status da lava rapido",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node servidor.js",
+    "dev": "node --watch --env-file=.env servidor.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "jest": "^30.5.2"
+  }
+}
 | `start` | `node servidor.js` |
 | `dev` | `node --watch --env-file=.env servidor.js` |
 
