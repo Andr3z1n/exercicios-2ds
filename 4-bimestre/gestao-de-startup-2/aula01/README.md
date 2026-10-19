@@ -248,6 +248,7 @@ Deixe a página aberta no seu computador. Visite os colegas ao lado e dê nota n
 **3. Responda**
 
 - Quantas respostas e qual o NPS?
-R:
+R:21 respostas e o NPS é de -14
+
 - Complete: *"Se este NPS cair, eu vou ______."*
-R:
+R:Pedir demissão.

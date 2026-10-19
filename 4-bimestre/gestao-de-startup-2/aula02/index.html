@@ -1,0 +1,834 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#101b2d">
+    <title>Agenda Escolar | Pesquisa de recomendação</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: #172033;
+        background: #f3f6fb;
+        font-synthesis: none;
+        text-rendering: optimizeLegibility;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        min-width: 320px;
+        min-height: 100vh;
+        margin: 0;
+        padding: 32px 20px;
+        display: grid;
+        place-items: center;
+        background:
+          radial-gradient(ellipse at 5% 5%, rgb(70 209 165 / 12%), transparent 32rem),
+          #f3f6fb;
+      }
+
+      button,
+      input {
+        font: inherit;
+      }
+
+      .page {
+        width: min(100%, 760px);
+      }
+
+      .brand {
+        margin: 0 0 16px 4px;
+        color: #536278;
+        font-size: 0.85rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .card {
+        overflow: hidden;
+        border: 1px solid #e2e8f0;
+        border-radius: 24px;
+        background: #fff;
+        box-shadow: 0 24px 70px rgb(24 39 65 / 10%);
+      }
+
+      .intro {
+        padding: clamp(28px, 7vw, 52px);
+        color: #fff;
+        background: #101b2d;
+      }
+
+      .eyebrow {
+        margin: 0 0 14px;
+        color: #71e0ba;
+        font-size: 0.78rem;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(2.4rem, 8vw, 4rem);
+        letter-spacing: -0.07em;
+        line-height: 1;
+      }
+
+      .description {
+        max-width: 540px;
+        margin: 18px 0 0;
+        color: #c4cede;
+        font-size: 1.08rem;
+        line-height: 1.65;
+      }
+
+      .funnel {
+        padding: clamp(26px, 6vw, 44px);
+        border-bottom: 1px solid #e9edf3;
+      }
+
+      .funnel-intro {
+        margin: 9px 0 20px;
+        color: #68758a;
+        font-size: 0.92rem;
+        line-height: 1.55;
+      }
+
+      .journey-actions {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 9px;
+        margin-bottom: 23px;
+      }
+
+      .journey-button {
+        min-height: 46px;
+        padding: 9px 12px;
+        border: 1px solid #15865f;
+        border-radius: 11px;
+        color: #106f4e;
+        background: #effaf5;
+        cursor: pointer;
+        font-size: 0.88rem;
+        font-weight: 700;
+      }
+
+      .journey-button:hover:not(:disabled) {
+        background: #daf4e9;
+      }
+
+      .journey-button:disabled {
+        border-color: #e2e8f0;
+        color: #9aa5b5;
+        background: #f6f8fb;
+        cursor: not-allowed;
+      }
+
+      .journey-button:focus-visible,
+      .clear-funnel:focus-visible {
+        outline: 3px solid #ffca66;
+        outline-offset: 3px;
+      }
+
+      .funnel-status {
+        min-height: 1.4em;
+        margin: -12px 0 16px;
+        color: #176d50;
+        font-size: 0.88rem;
+      }
+
+      .funnel-status.error {
+        color: #b42318;
+      }
+
+      .funnel-steps {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 9px;
+      }
+
+      .funnel-step {
+        padding: 13px 10px;
+        border: 1px solid #e5eaf1;
+        border-radius: 13px;
+        background: #fbfcfe;
+        transition: border-color 140ms ease, background 140ms ease;
+      }
+
+      .funnel-step--largest-drop {
+        border-color: #dc2626;
+        background: #fff1f2;
+      }
+
+      .funnel-step-label {
+        display: block;
+        min-height: 2.3em;
+        color: #68758a;
+        font-size: 0.78rem;
+        line-height: 1.25;
+      }
+
+      .funnel-step-count {
+        display: block;
+        margin-top: 5px;
+        font-size: 1.55rem;
+        font-weight: 800;
+        letter-spacing: -0.06em;
+      }
+
+      .conversions {
+        display: grid;
+        gap: 7px;
+        margin-top: 14px;
+      }
+
+      .conversion {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 10px 12px;
+        border-radius: 10px;
+        color: #536278;
+        background: #f3f6fb;
+        font-size: 0.84rem;
+      }
+
+      .conversion--largest-drop {
+        color: #b42318;
+        background: #fff1f2;
+        box-shadow: inset 3px 0 #dc2626;
+        font-weight: 750;
+      }
+
+      .funnel-summary {
+        min-height: 1.4em;
+        margin: 13px 0 0;
+        color: #536278;
+        font-size: 0.88rem;
+      }
+
+      .clear-funnel {
+        display: block;
+        margin: 10px 0 0 auto;
+        padding: 8px 0;
+        border: 0;
+        color: #68758a;
+        background: transparent;
+        cursor: pointer;
+        font-size: 0.85rem;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
+      .survey {
+        padding: clamp(26px, 6vw, 44px);
+      }
+
+      fieldset {
+        min-width: 0;
+        margin: 0;
+        padding: 0;
+        border: 0;
+      }
+
+      legend {
+        margin-bottom: 8px;
+        font-size: clamp(1.15rem, 3vw, 1.35rem);
+        font-weight: 750;
+        letter-spacing: -0.03em;
+        line-height: 1.4;
+      }
+
+      .hint {
+        margin: 0 0 22px;
+        color: #68758a;
+        font-size: 0.92rem;
+      }
+
+      .ratings {
+        display: grid;
+        grid-template-columns: repeat(11, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .rating {
+        position: relative;
+      }
+
+      .rating input {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        opacity: 0;
+      }
+
+      .rating label {
+        display: grid;
+        min-height: 46px;
+        place-items: center;
+        border: 1px solid #dbe2ec;
+        border-radius: 12px;
+        color: #344258;
+        cursor: pointer;
+        font-weight: 750;
+        transition: background 140ms ease, border-color 140ms ease, color 140ms ease, transform 140ms ease;
+      }
+
+      .rating label:hover {
+        transform: translateY(-2px);
+        border-color: #31b98d;
+      }
+
+      .rating input:checked + label {
+        border-color: #15865f;
+        color: #fff;
+        background: #15865f;
+        box-shadow: 0 5px 14px rgb(21 134 95 / 22%);
+      }
+
+      .rating input:focus-visible + label {
+        outline: 3px solid #ffca66;
+        outline-offset: 3px;
+      }
+
+      .scale-labels {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 9px;
+        color: #778398;
+        font-size: 0.78rem;
+      }
+
+      .submit {
+        width: 100%;
+        min-height: 52px;
+        margin-top: 24px;
+        border: 0;
+        border-radius: 13px;
+        color: #fff;
+        background: #15865f;
+        cursor: pointer;
+        font-weight: 750;
+        transition: background 140ms ease, transform 140ms ease;
+      }
+
+      .submit:hover {
+        transform: translateY(-1px);
+        background: #106f4e;
+      }
+
+      .submit:focus-visible,
+      .clear:focus-visible {
+        outline: 3px solid #ffca66;
+        outline-offset: 3px;
+      }
+
+      .status {
+        min-height: 1.4em;
+        margin: 13px 0 0;
+        color: #176d50;
+        font-size: 0.9rem;
+      }
+
+      .status.error {
+        color: #b42318;
+      }
+
+      .results {
+        padding: clamp(26px, 6vw, 44px);
+        border-top: 1px solid #e9edf3;
+        background: #fbfcfe;
+      }
+
+      .results-heading {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 18px;
+      }
+
+      h2 {
+        margin: 0;
+        font-size: 1.15rem;
+        letter-spacing: -0.03em;
+      }
+
+      .total {
+        color: #68758a;
+        font-size: 0.88rem;
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .stat {
+        padding: 17px;
+        border: 1px solid #e5eaf1;
+        border-radius: 15px;
+        background: #fff;
+      }
+
+      .stat-label {
+        display: block;
+        margin-bottom: 7px;
+        color: #68758a;
+        font-size: 0.82rem;
+      }
+
+      .stat-value {
+        font-size: 1.8rem;
+        font-weight: 800;
+        letter-spacing: -0.06em;
+      }
+
+      .nps {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-top: 14px;
+        padding: 19px;
+        border-radius: 15px;
+        color: #fff;
+        background: #101b2d;
+      }
+
+      .nps-label {
+        font-weight: 700;
+      }
+
+      .nps-value {
+        color: #71e0ba;
+        font-size: 2rem;
+        font-weight: 850;
+        letter-spacing: -0.06em;
+      }
+
+      .clear {
+        display: block;
+        margin: 16px 0 0 auto;
+        padding: 8px 0;
+        border: 0;
+        color: #68758a;
+        background: transparent;
+        cursor: pointer;
+        font-size: 0.85rem;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
+      @media (max-width: 560px) {
+        body {
+          padding: 20px 12px;
+        }
+
+        .card {
+          border-radius: 18px;
+        }
+
+        .ratings {
+          grid-template-columns: repeat(6, minmax(0, 1fr));
+        }
+
+        .rating label {
+          min-height: 48px;
+        }
+
+        .stats {
+          gap: 8px;
+        }
+
+        .journey-actions {
+          grid-template-columns: 1fr;
+        }
+
+        .funnel-steps {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .stat {
+          padding: 13px 10px;
+        }
+
+        .stat-label {
+          font-size: 0.75rem;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <p class="brand">Pesquisa de recomendação</p>
+
+      <section class="card" aria-labelledby="app-name">
+        <header class="intro">
+          <p class="eyebrow">Sua rotina escolar em ordem</p>
+          <h1 id="app-name">Agenda Escolar</h1>
+          <p class="description">
+            A Agenda Escolar ajuda você a organizar aulas, tarefas e provas em um só lugar.
+          </p>
+        </header>
+
+        <section class="funnel" aria-labelledby="funnel-title">
+          <h2 id="funnel-title">Funil AARRR</h2>
+          <p class="funnel-intro">
+            Experimente o app e acompanhe quantas pessoas avançam por cada etapa.
+            Uma recomendação é registrada ao enviar uma nota 9 ou 10 no NPS.
+          </p>
+          <div class="journey-actions" aria-label="Etapas para experimentar o app">
+            <button class="journey-button" id="try-app" type="button">Experimentar</button>
+            <button class="journey-button" id="use-again" type="button" disabled>Quero usar de novo</button>
+            <button class="journey-button" id="would-pay" type="button" disabled>Eu pagaria por isso</button>
+          </div>
+          <p class="funnel-status" id="funnel-status" role="status" aria-live="polite"></p>
+          <div class="funnel-steps" aria-live="polite">
+            <div class="funnel-step" data-funnel-step="acquisition">
+              <span class="funnel-step-label">Aquisição</span>
+              <span class="funnel-step-count" id="acquisition-count">0</span>
+            </div>
+            <div class="funnel-step" data-funnel-step="activation">
+              <span class="funnel-step-label">Ativação</span>
+              <span class="funnel-step-count" id="activation-count">0</span>
+            </div>
+            <div class="funnel-step" data-funnel-step="retention">
+              <span class="funnel-step-label">Retenção</span>
+              <span class="funnel-step-count" id="retention-count">0</span>
+            </div>
+            <div class="funnel-step" data-funnel-step="revenue">
+              <span class="funnel-step-label">Receita</span>
+              <span class="funnel-step-count" id="revenue-count">0</span>
+            </div>
+            <div class="funnel-step" data-funnel-step="recommendation">
+              <span class="funnel-step-label">Recomendação</span>
+              <span class="funnel-step-count" id="recommendation-count">0</span>
+            </div>
+          </div>
+          <div class="conversions" id="conversions" aria-label="Taxas de conversão entre etapas"></div>
+          <p class="funnel-summary" id="funnel-summary" aria-live="polite"></p>
+          <button class="clear-funnel" id="clear-funnel" type="button">Limpar dados do funil</button>
+        </section>
+
+        <form class="survey" id="survey-form">
+          <fieldset>
+            <legend>De 0 a 10, quanto você recomendaria este app para um amigo?</legend>
+            <p class="hint">Escolha uma nota para registrar sua resposta.</p>
+            <div class="ratings" aria-label="Notas de 0 a 10">
+              <script>
+                for (let score = 0; score <= 10; score += 1) {
+                  document.write(
+                    `<span class="rating"><input id="score-${score}" type="radio" name="score" value="${score}" required><label for="score-${score}">${score}</label></span>`
+                  );
+                }
+              </script>
+            </div>
+            <div class="scale-labels" aria-hidden="true">
+              <span>Não recomendaria</span>
+              <span>Recomendaria muito</span>
+            </div>
+          </fieldset>
+          <button class="submit" type="submit">Enviar resposta</button>
+          <p class="status" id="status" role="status" aria-live="polite"></p>
+        </form>
+
+        <section class="results" aria-labelledby="results-title">
+          <div class="results-heading">
+            <h2 id="results-title">Resultado da pesquisa</h2>
+            <span class="total" id="total-responses">0 respostas</span>
+          </div>
+          <div class="stats" aria-live="polite">
+            <div class="stat">
+              <span class="stat-label">Promotores</span>
+              <span class="stat-value" id="promoters">0</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">Neutros</span>
+              <span class="stat-value" id="passives">0</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">Detratores</span>
+              <span class="stat-value" id="detractors">0</span>
+            </div>
+          </div>
+          <div class="nps">
+            <span class="nps-label">NPS final</span>
+            <span class="nps-value" id="nps">--</span>
+          </div>
+          <button class="clear" id="clear-responses" type="button">Limpar respostas</button>
+        </section>
+      </section>
+    </main>
+
+    <script>
+      const STORAGE_KEY = "agenda-escolar-aula2-nps-responses";
+      const FUNNEL_STORAGE_KEY = "agenda-escolar-aula2-aarrr-funnel";
+      const funnelSteps = [
+        { key: "acquisition", label: "Aquisição" },
+        { key: "activation", label: "Ativação" },
+        { key: "retention", label: "Retenção" },
+        { key: "revenue", label: "Receita" },
+        { key: "recommendation", label: "Recomendação" },
+      ];
+      const journeyButtons = [
+        document.querySelector("#try-app"),
+        document.querySelector("#use-again"),
+        document.querySelector("#would-pay"),
+      ];
+      const form = document.querySelector("#survey-form");
+      const statusMessage = document.querySelector("#status");
+      const clearButton = document.querySelector("#clear-responses");
+      const funnelStatus = document.querySelector("#funnel-status");
+      const clearFunnelButton = document.querySelector("#clear-funnel");
+      let responses = [];
+      let funnelCounts = Object.fromEntries(funnelSteps.map(({ key }) => [key, 0]));
+      let funnelAvailable = true;
+      let journeyStep = 0;
+
+      function showStatus(message, isError = false) {
+        statusMessage.textContent = message;
+        statusMessage.classList.toggle("error", isError);
+      }
+
+      function loadResponses() {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (stored === null) return [];
+
+        const parsed = JSON.parse(stored);
+        if (
+          !Array.isArray(parsed) ||
+          parsed.some((score) => !Number.isInteger(score) || score < 0 || score > 10)
+        ) {
+          throw new Error("Os dados salvos não estão em um formato válido.");
+        }
+        return parsed;
+      }
+
+      function showFunnelStatus(message, isError = false) {
+        funnelStatus.textContent = message;
+        funnelStatus.classList.toggle("error", isError);
+      }
+
+      function setJourneyEnabled() {
+        journeyButtons.forEach((button, index) => {
+          button.disabled = !funnelAvailable || index !== journeyStep;
+        });
+      }
+
+      function loadFunnel() {
+        const stored = localStorage.getItem(FUNNEL_STORAGE_KEY);
+        if (stored === null) return Object.fromEntries(funnelSteps.map(({ key }) => [key, 0]));
+
+        const parsed = JSON.parse(stored);
+        if (
+          parsed === null ||
+          typeof parsed !== "object" ||
+          Array.isArray(parsed) ||
+          funnelSteps.some(({ key }) => !Number.isInteger(parsed[key]) || parsed[key] < 0)
+        ) {
+          throw new Error("Os dados salvos do funil não estão em um formato válido.");
+        }
+        return parsed;
+      }
+
+      function saveFunnel(updatedCounts) {
+        localStorage.setItem(FUNNEL_STORAGE_KEY, JSON.stringify(updatedCounts));
+        funnelCounts = updatedCounts;
+        renderFunnel();
+      }
+
+      function renderFunnel() {
+        funnelSteps.forEach(({ key }) => {
+          document.querySelector(`#${key}-count`).textContent = funnelCounts[key];
+          document
+            .querySelector(`[data-funnel-step="${key}"]`)
+            .classList.remove("funnel-step--largest-drop");
+        });
+
+        const transitions = funnelSteps.slice(0, -1).map((step, index) => {
+          const nextStep = funnelSteps[index + 1];
+          const sourceCount = funnelCounts[step.key];
+          const targetCount = funnelCounts[nextStep.key];
+          const conversion = sourceCount === 0 ? null : (targetCount / sourceCount) * 100;
+          const drop = conversion === null ? null : 100 - conversion;
+          return { step, nextStep, conversion, drop };
+        });
+        const measurableDrops = transitions.filter(({ drop }) => drop !== null);
+        const largestDrop = measurableDrops.reduce(
+          (largest, transition) =>
+            transition.drop > 0 && (largest === null || transition.drop > largest.drop)
+              ? transition
+              : largest,
+          null,
+        );
+        const conversionList = document.querySelector("#conversions");
+        conversionList.replaceChildren();
+
+        transitions.forEach(({ step, nextStep, conversion }) => {
+          const row = document.createElement("div");
+          row.className = "conversion";
+          if (largestDrop?.step.key === step.key) {
+            row.classList.add("conversion--largest-drop");
+            document
+              .querySelector(`[data-funnel-step="${nextStep.key}"]`)
+              .classList.add("funnel-step--largest-drop");
+          }
+
+          const label = document.createElement("span");
+          label.textContent = `${step.label} → ${nextStep.label}`;
+          const value = document.createElement("span");
+          value.textContent = conversion === null
+            ? "Conversão: —"
+            : `Conversão: ${Math.round(conversion)}%`;
+          row.append(label, value);
+          conversionList.append(row);
+        });
+
+        document.querySelector("#funnel-summary").textContent = largestDrop
+          ? `Maior queda: ${largestDrop.step.label} → ${largestDrop.nextStep.label} (${Math.round(largestDrop.drop)}%).`
+          : "Ainda não há queda percentual entre etapas para destacar.";
+      }
+
+      function disableFunnel(error) {
+        funnelAvailable = false;
+        setJourneyEnabled();
+        clearFunnelButton.disabled = true;
+        showFunnelStatus(`Não foi possível atualizar o funil: ${error.message}`, true);
+      }
+
+      function renderResults() {
+        const promoters = responses.filter((score) => score >= 9).length;
+        const passives = responses.filter((score) => score >= 7 && score <= 8).length;
+        const detractors = responses.filter((score) => score <= 6).length;
+        const total = responses.length;
+
+        document.querySelector("#promoters").textContent = promoters;
+        document.querySelector("#passives").textContent = passives;
+        document.querySelector("#detractors").textContent = detractors;
+        document.querySelector("#total-responses").textContent =
+          `${total} ${total === 1 ? "resposta" : "respostas"}`;
+        document.querySelector("#nps").textContent =
+          total === 0 ? "--" : Math.round(((promoters - detractors) / total) * 100);
+      }
+
+      try {
+        responses = loadResponses();
+        renderResults();
+      } catch (error) {
+        showStatus(`Não foi possível carregar as respostas: ${error.message}`, true);
+        form.querySelector("button[type='submit']").disabled = true;
+        clearButton.disabled = true;
+      }
+
+      try {
+        funnelCounts = loadFunnel();
+        funnelCounts.acquisition += 1;
+        saveFunnel(funnelCounts);
+        setJourneyEnabled();
+      } catch (error) {
+        disableFunnel(error);
+      }
+
+      journeyButtons.forEach((button, index) => {
+        button.addEventListener("click", () => {
+          if (!funnelAvailable || index !== journeyStep) return;
+
+          const stage = funnelSteps[index + 1].key;
+          const updatedCounts = { ...funnelCounts, [stage]: funnelCounts[stage] + 1 };
+          try {
+            saveFunnel(updatedCounts);
+            journeyStep += 1;
+            setJourneyEnabled();
+            showFunnelStatus("Etapa registrada. Continue para a próxima.");
+          } catch (error) {
+            disableFunnel(error);
+          }
+        });
+      });
+
+      clearFunnelButton.addEventListener("click", () => {
+        if (!funnelAvailable) return;
+        if (!window.confirm("Tem certeza de que deseja apagar os dados do funil?")) return;
+
+        try {
+          const clearedCounts = Object.fromEntries(funnelSteps.map(({ key }) => [key, 0]));
+          localStorage.setItem(FUNNEL_STORAGE_KEY, JSON.stringify(clearedCounts));
+          funnelCounts = clearedCounts;
+          journeyStep = 0;
+          renderFunnel();
+          setJourneyEnabled();
+          showFunnelStatus("Dados do funil apagados.");
+        } catch (error) {
+          disableFunnel(error);
+        }
+      });
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const selectedScore = form.querySelector("input[name='score']:checked");
+        if (!selectedScore) {
+          showStatus("Escolha uma nota antes de enviar.", true);
+          return;
+        }
+
+        const updatedResponses = [...responses, Number(selectedScore.value)];
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedResponses));
+          responses = updatedResponses;
+          renderResults();
+          form.reset();
+          if (Number(selectedScore.value) >= 9 && funnelAvailable) {
+            const updatedCounts = {
+              ...funnelCounts,
+              recommendation: funnelCounts.recommendation + 1,
+            };
+            try {
+              saveFunnel(updatedCounts);
+              showFunnelStatus("Recomendação registrada no funil.");
+            } catch (error) {
+              disableFunnel(error);
+              showStatus(`Resposta registrada, mas não foi possível atualizar o funil: ${error.message}`, true);
+              return;
+            }
+          }
+          showStatus("Resposta registrada. Obrigado por participar!");
+        } catch (error) {
+          showStatus(`Não foi possível salvar sua resposta: ${error.message}`, true);
+        }
+      });
+
+      clearButton.addEventListener("click", () => {
+        if (responses.length === 0) {
+          showStatus("Ainda não há respostas para limpar.");
+          return;
+        }
+        if (!window.confirm("Tem certeza de que deseja apagar todas as respostas?")) return;
+
+        try {
+          localStorage.removeItem(STORAGE_KEY);
+          responses = [];
+          renderResults();
+          showStatus("Todas as respostas foram apagadas.");
+        } catch (error) {
+          showStatus(`Não foi possível apagar as respostas: ${error.message}`, true);
+        }
+      });
+    </script>
+  </body>
+</html>
