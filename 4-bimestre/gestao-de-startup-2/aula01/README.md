@@ -228,6 +228,19 @@ e o NPS final.
 
 Confira: digite as 20 notas do exemplo da aula. O resultado precisa ser **NPS 35**. Depois, limpe as notas de teste.
 
+Adicione também o funil AARRR à página:
+
+```
+Adicione a esta página um funil AARRR salvo no localStorage: abrir a
+página (aquisição), clicar em "Experimentar" (ativação), clicar em
+"Quero usar de novo" (retenção), clicar em "Eu pagaria por isso"
+(receita) e dar nota 9 ou 10 no NPS (recomendação). Mostre a quantidade
+de cada etapa, a taxa de conversão entre elas e destaque em vermelho a
+etapa com a maior queda percentual.
+```
+
+Confira se cada ação atualiza a etapa certa, se as taxas de conversão aparecem entre todas as etapas e se a maior queda fica destacada em vermelho. Recarregue a página para confirmar que os dados continuam salvos; use **Limpar dados do funil** para recomeçar.
+
 **2. Colete (10 min)**
 
 Deixe a página aberta no seu computador. Visite os colegas ao lado e dê nota nos apps deles; peça que eles deem nota no seu. Tente conseguir **pelo menos 5 respostas**.
@@ -235,4 +248,6 @@ Deixe a página aberta no seu computador. Visite os colegas ao lado e dê nota n
 **3. Responda**
 
 - Quantas respostas e qual o NPS?
+R:
 - Complete: *"Se este NPS cair, eu vou ______."*
+R:
